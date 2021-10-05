@@ -4,7 +4,10 @@ import org.apache.axis2.transport.http.SimpleHTTPServer;
 public class MockServer {
     public static void main(String[] args) throws Exception {
         final int port = 8080;
-        final ConfigurationContext configuration = ConfigurationContextFactory.createDefaultConfigurationContext();
+        final ConfigurationContext configuration = ConfigurationContextFactory.createConfigurationContextFromURIs(
+                null, // use default axis2xml
+                MockServer.class.getResource("/axis2/")
+        );
         SimpleHTTPServer receiver = new SimpleHTTPServer(configuration, port);
 
         receiver.start();
